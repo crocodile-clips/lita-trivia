@@ -35,7 +35,7 @@ module Lita
       def handle_answer_request(req)
         res = Jeopardizer.try_answer(redis, req.match_data[1])
         redis.del REDIS_TRIVIA_KEY if res == :correct
-        req.reply res
+        req.reply res.to_s
       end
 
       class Jeopardizer
